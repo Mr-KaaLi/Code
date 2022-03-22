@@ -1,0 +1,20 @@
+pipeline    {
+ agent any 
+  tools { 
+       maven 'jenkins-maven' 
+    }
+    stages {
+
+        stage('Downloading') {
+            steps {
+                git 'https://github.com/Mr-KaaLi/webapp.git'
+            }    
+        }
+        
+        stage('Build') {
+            steps {
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            }    
+        }
+    }
+}
